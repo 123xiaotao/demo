@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaobai.demo.mapper.UserMapper">
+<select id="fun" resultType="com.xiaobai.demo.entity.User">
+    select * from user where deleted=0 and name=#{name}
+<if test="age==20">and age=#{age}</if>
+</select>
+<!--<select id="fun1" resultType="com.xiaobai.demo.entity.User" parameterType="map">-->
+<!--    select * from user-->
+<!--<where>-->
+<!--    <foreach collection="ids" item="id" separator="or">-->
+<!--        id = #{id}-->
+<!--    </foreach>-->
+<!--</where>-->
+<!--</select>-->
+    <select id="selectMap" resultType="java.util.LinkedHashMap">
+        select * from user
+    </select>
+    <select id="get" resultType="java.util.LinkedHashMap">
+        select * from user where id=1
+    </select>
+    
+    
+    <select id="getUserInfo" resultType="com.xiaobai.demo.entity.User">
+        select * from user
+<where>
+    id in
+                 <foreach collection="id" item="item" separator="," open="(" close=")">
+                     #{item}
+                 </foreach>
+</where>
+    </select>
+
+<select id="getUserInfo1" resultType="com.xiaobai.demo.entity.User">
+    select * from user
+<where>
+    <if test="id!=null and id.size()>0">
+        id in<foreach collection="id" item="item" separator="," open="(" close=")">
+        #{item}
+    </foreach>
+    </if>
+</where>
+</select>
+
+    <select id="getUserInfo2" resultType="com.xiaobai.demo.entity.User">
+        select * from user
+        <where>
+            <if test="id!=null and id.size()>0">
+                id in<foreach collection="id.values" item="item" separator="," open="(" close=")">
+                #{item}
+            </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>
