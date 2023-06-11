@@ -18,7 +18,7 @@ public class User implements Serializable {
 
 //12345678
 
-//0123456789
+
     //create_time
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
