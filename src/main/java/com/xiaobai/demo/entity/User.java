@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String name;
     private Integer age;
 
-//12
+//12345678
     //create_time
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
